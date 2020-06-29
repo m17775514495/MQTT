@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+</head>
+<body onbeforeunload="exit()">
+    <p><h1 id="count">0</h1></p>
+        <input type="hidden" id="userName" th:value="${user.userName}" />
+        <input type="hidden" id="userId" th:value="${user.userId}" />
+        <input type="hidden" id="roomName" th:value="${roomName}"/>
+    <p >
+        消息:<input type="text" id="msg" value="" placeholder="消息" />
+        <input type="button" value="发送消息" onclick="send()"/>
+        <input type="button" value="退出" onclick="exit()"/>
+    </p>
+    <div id="text" style="border:1px solid red;">
+
+    </div>
+    <iframe style="width:0px;height:0px;" scrolling="no" id="iframeRight" name="iframeRight" frameborder="0"></iframe>
+</body>
+<script src="../../static/js/mqttws31.js" type="text/javascript" ></script>
+<script src="../../js/static/jquery.min.js" type="text/javascript" ></script>
+<script src="../../js/static/mqtt-client.js" type="text/javascript" ></script>
+<script>
+    $("#iframeRight").attr("src", "/count/" + $("#roomName").val()+"/"+ $("#userId").val());
+</script>
+</html>
